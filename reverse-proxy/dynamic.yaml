@@ -4,19 +4,20 @@ http:
       rule: "PathPrefix(`/backend/`)"
       priority: 1000
       middlewares:
-        - test-stripprefix
+        - "test-stripprefix"
       service: backend
 
-  middleware:
+  middlewares:
     test-auth:
-      forward-auth:
+      forwardAuth:
         address: "http://127.0.0.1"
-        trustForwardedHeader: true
-        authResponseHeader: "X-Forwarded-User"
+        trustForwardHeader: true
+        authResponseHeaders: "X-Forwarded-User"
     test-stripprefix:
-      prefixes:
-        - "/backend"
-        - "/auth"
+      stripPrefix:
+        prefixes:
+          - "/backend"
+          - "/auth"
 
   services:
     auth:
@@ -26,4 +27,4 @@ http:
     backend:
       loadBalancer:
         servers:
-          - url: "http://127.0.0.1"
+          - url: "https://google.de"
