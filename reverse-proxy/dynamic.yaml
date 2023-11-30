@@ -1,0 +1,29 @@
+http:
+  routers:
+    to-backend:
+      rule: "PathPrefix(`/backend/`)"
+      priority: 1000
+      middlewares:
+        - test-stripprefix
+      service: backend
+
+  middleware:
+    test-auth:
+      forward-auth:
+        address: "http://127.0.0.1"
+        trustForwardedHeader: true
+        authResponseHeader: "X-Forwarded-User"
+    test-stripprefix:
+      prefixes:
+        - "/backend"
+        - "/auth"
+
+  services:
+    auth:
+      loadBalancer:
+        servers:
+          - url: "http://127.0.0.1"
+    backend:
+      loadBalancer:
+        servers:
+          - url: "http://127.0.0.1"

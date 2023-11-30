@@ -1,3 +1,14 @@
 providers:
   file:
-    filename: dynamic.yaml
+    filename: /etc/traefik/dynamic.yaml
+
+api:
+  insecure: true
+  dashboard: true
+
+log:
+  level: DEBUG
+  filePath: "/etc/traefik/traefic.log"
+
+accessLog:
+  filePath: "/etc/traefik/access.log"
