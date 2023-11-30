@@ -8,7 +8,7 @@ api:
 
 log:
   level: DEBUG
-  filePath: "/etc/traefik/traefic.log"
+  filePath: "/etc/traefik/logs/traefik.log"
 
 accessLog:
-  filePath: "/etc/traefik/access.log"
+  filePath: "/etc/traefik/logs/access.log"
